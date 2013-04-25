@@ -9,13 +9,18 @@ $(function() {
             $('section').show();
             break;
         case 40: // down cursor key
+            $('section#current').scrollTop();
             $('h1').animate({
                 fontSize: '200'
             }, 1000, function() {
-                $('section').hide();
-                $('section#current').show();
+                showCurrent();
             });
             break;
         }
     });
 });
+
+showCurrent = function() {
+    $('section').hide();
+    $('section#current').show();
+};
