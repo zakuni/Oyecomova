@@ -15,7 +15,7 @@ $(function() {
             $('h1').animate({
                 fontSize: '200'
             }, 1000, function() {
-                showPage(index);
+                showPage(current);
             });
             break;
         case 37: // left cursor key
