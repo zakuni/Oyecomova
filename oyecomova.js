@@ -19,11 +19,11 @@ $(function() {
             });
             break;
         case 37: // left cursor key
-            current--;
+            if (current > 0) current--;
             showPage(current);
             break;
         case 39: // right cursor key
-            current++;
+            if (current < $('h1').size() -1) current++;
             showPage(current);
             break;
         }
