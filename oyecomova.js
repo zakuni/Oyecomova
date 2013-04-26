@@ -1,4 +1,6 @@
 $(function() {
+    var current = 0;
+    
     $('html').keyup(function(e) {
         switch(e.which) {
         case 38: // up cursor key
@@ -13,14 +15,22 @@ $(function() {
             $('h1').animate({
                 fontSize: '200'
             }, 1000, function() {
-                showCurrent();
+                showPage(index);
             });
+            break;
+        case 37: // left cursor key
+            current--;
+            showPage(current);
+            break;
+        case 39: // right cursor key
+            current++;
+            showPage(current);
             break;
         }
     });
 });
 
-showCurrent = function() {
+showPage = function(index) {
     $('section').hide();
-    $('section#current').show();
+    $('section:eq(' + index + ')').show();
 };
