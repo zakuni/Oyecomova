@@ -28,9 +28,10 @@ $(function() {
             break;
         }
     });
-});
 
-showPage = function(index) {
-    $('section').hide();
-    $('section:eq(' + index + ')').show();
-};
+    var showPage = function(index) {
+        $('section').hide();
+        $('section:eq(' + index + ')').show();
+    };
+
+});
