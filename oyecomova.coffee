@@ -9,6 +9,7 @@ $ ->
         $('section').show()
       when 40 # down cursor key
         $('section#current').scrollTop()
+        $("section:eq(#{current})").scrollTop()
         $('h1').animate
           fontSize: '200', 1000, () -> showPage(current)
       when 37 # left cursor key
@@ -21,3 +22,4 @@ $ ->
 showPage = (index) ->
   $('section').hide();
   $('section:eq(' + index + ')').show()
+  $("section:eq(#{index})").show()
