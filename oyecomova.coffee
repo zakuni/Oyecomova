@@ -5,12 +5,16 @@ $ ->
     switch e.which
       when 38 # up cursor key
         $('h1').animate
-          fontSize: '70', 1000, () ->
+          fontSize: '70'
+          1000
+          () ->
         $('section').show()
       when 40 # down cursor key
         $("section:eq(#{current})").scrollTop()
         $('h1').animate
-          fontSize: '200', 1000, () -> showPage(current)
+          fontSize: '200'
+          1000
+          () -> showPage(current)
       when 37 # left cursor key
         current-- if current > 0
         showPage(current)
