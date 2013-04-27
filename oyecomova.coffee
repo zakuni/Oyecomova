@@ -1,5 +1,6 @@
 $ ->
   current = 0
+  showPage(current)
 
   $('html').keyup (e) ->
     switch e.which

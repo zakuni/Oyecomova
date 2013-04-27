@@ -6,6 +6,7 @@
     var current;
 
     current = 0;
+    showPage(current);
     return $('html').keyup(function(e) {
       switch (e.which) {
         case 38:
