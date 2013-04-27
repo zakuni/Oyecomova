@@ -14,7 +14,6 @@
           }, 1000, function() {});
           return $('section').show();
         case 40:
-          $('section#current').scrollTop();
           $("section:eq(" + current + ")").scrollTop();
           return $('h1').animate({
             fontSize: '200'
@@ -37,7 +36,6 @@
 
   showPage = function(index) {
     $('section').hide();
-    return $('section:eq(' + index + ')').show();
     return $("section:eq(" + index + ")").show();
   };
 
