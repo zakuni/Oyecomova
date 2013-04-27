@@ -1,39 +1,23 @@
-`
-$(function() {
-    var current = 0;
-    
-    $('html').keyup(function(e) {
-        switch(e.which) {
-        case 38: // up cursor key
-            $('h1').animate({
-                fontSize: '70'
-            }, 1000, function() {
-            });
-            $('section').show();
-            break;
-        case 40: // down cursor key
-            $('section#current').scrollTop();
-            $('h1').animate({
-                fontSize: '200'
-            }, 1000, function() {
-                showPage(current);
-            });
-            break;
-        case 37: // left cursor key
-            if (current > 0) current--;
-            showPage(current);
-            break;
-        case 39: // right cursor key
-            if (current < $('h1').size() -1) current++;
-            showPage(current);
-            break;
-        }
-    });
+$ ->
+  current = 0
 
-    var showPage = function(index) {
-        $('section').hide();
-        $('section:eq(' + index + ')').show();
-    };
+  $('html').keyup (e) ->
+    switch e.which
+      when 38 # up cursor key
+        $('h1').animate
+          fontSize: '70', 1000, () ->
+        $('section').show()
+      when 40 # down cursor key
+        $('section#current').scrollTop()
+        $('h1').animate
+          fontSize: '200', 1000, () -> showPage(current)
+      when 37 # left cursor key
+        current-- if current > 0
+        showPage(current)
+      when 39 # right cursor key
+        current++ if current < $('h1').size()-1
+        showPage(current)
 
-});
-`
+showPage = (index) ->
+  $('section').hide();
+  $('section:eq(' + index + ')').show()
