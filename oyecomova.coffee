@@ -5,7 +5,7 @@ $ ->
   current = 0
   showPage(current)
 
-  $('html').keyup (e) ->
+  $('html').keydown (e) ->
     switch e.which
       when 38 # up cursor key
         e.preventDefault()

@@ -11,7 +11,7 @@
 
     current = 0;
     showPage(current);
-    return $('html').keyup(function(e) {
+    return $('html').keydown(function(e) {
       switch (e.which) {
         case 38:
           e.preventDefault();
