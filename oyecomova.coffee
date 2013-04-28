@@ -1,3 +1,5 @@
+PAGE = 'section'
+
 $ ->
   current = 0
   showPage(current)
@@ -9,9 +11,9 @@ $ ->
           fontSize: '70'
           1000
           () ->
-        $('section').show()
+        $(PAGE).show()
       when 40 # down cursor key
-        $("section:eq(#{current})").scrollTop()
+        $("#{PAGE}:eq(#{current})").scrollTop()
         $('h1').animate
           fontSize: '200'
           1000
@@ -24,5 +26,5 @@ $ ->
         showPage(current)
 
 showPage = (index) ->
-  $('section').hide();
-  $("section:eq(#{index})").show()
+  $(PAGE).hide();
+  $("#{PAGE}:eq(#{index})").show()
