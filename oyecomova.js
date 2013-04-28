@@ -12,11 +12,13 @@
     return $('html').keyup(function(e) {
       switch (e.which) {
         case 38:
+          e.preventDefault();
           $('h1').animate({
             fontSize: '70'
           }, 1000, function() {});
           return $(PAGE).show();
         case 40:
+          e.preventDefault();
           $("" + PAGE + ":eq(" + current + ")").scrollTop();
           return $('h1').animate({
             fontSize: '200'
@@ -24,11 +26,13 @@
             return showPage(current);
           });
         case 37:
+          e.preventDefault();
           if (current > 0) {
             current--;
           }
           return showPage(current);
         case 39:
+          e.preventDefault();
           if (current < $('h1').size() - 1) {
             current++;
           }
