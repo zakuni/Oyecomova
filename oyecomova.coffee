@@ -1,4 +1,5 @@
 PAGE = 'section'
+pjax = false
 
 $ ->
   current = 0
