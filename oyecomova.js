@@ -7,11 +7,11 @@
   pjax = false;
 
   $(function() {
-    var current, level;
+    var currentPage, level;
 
-    current = 0;
+    currentPage = 0;
     level = 1;
-    showPage(current);
+    showPage(currentPage);
     return $('html').keydown(function(e) {
       switch (e.which) {
         case 38:
@@ -26,24 +26,24 @@
         case 40:
           e.preventDefault();
           level++;
-          $("" + PAGE + ":eq(" + current + ")").scrollTop();
+          $("" + PAGE + ":eq(" + currentPage + ")").scrollTop();
           return $('h1').animate({
             fontSize: '200'
           }, 1000, function() {
-            return showPage(current);
+            return showPage(currentPage);
           });
         case 37:
           e.preventDefault();
-          if (current > 0) {
-            current--;
+          if (currentPage > 0) {
+            currentPage--;
           }
-          return showPage(current);
+          return showPage(currentPage);
         case 39:
           e.preventDefault();
-          if (current < $(PAGE).size() - 1) {
-            current++;
+          if (currentPage < $(PAGE).size() - 1) {
+            currentPage++;
           }
-          return showPage(current);
+          return showPage(currentPage);
       }
     });
   });

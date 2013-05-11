@@ -2,9 +2,9 @@ PAGE = 'section'
 pjax = false
 
 $ ->
-  current = 0
+  currentPage = 0
   level = 1
-  showPage(current)
+  showPage(currentPage)
 
   $('html').keydown (e) ->
     switch e.which
@@ -19,19 +19,19 @@ $ ->
       when 40 # down cursor key
         e.preventDefault()
         level++
-        $("#{PAGE}:eq(#{current})").scrollTop()
+        $("#{PAGE}:eq(#{currentPage})").scrollTop()
         $('h1').animate
           fontSize: '200'
           1000
-          () -> showPage(current)
+          () -> showPage(currentPage)
       when 37 # left cursor key
         e.preventDefault()
-        current-- if current > 0
-        showPage(current)
+        currentPage-- if currentPage > 0
+        showPage(currentPage)
       when 39 # right cursor key
         e.preventDefault()
-        current++ if current < $(PAGE).size()-1
-        showPage(current)
+        currentPage++ if currentPage < $(PAGE).size()-1
+        showPage(currentPage)
 
 showPage = (index) ->
   $(PAGE).hide();
