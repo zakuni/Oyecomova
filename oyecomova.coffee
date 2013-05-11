@@ -3,12 +3,14 @@ pjax = false
 
 $ ->
   current = 0
+  level = 1
   showPage(current)
 
   $('html').keydown (e) ->
     switch e.which
       when 38 # up cursor key
         e.preventDefault()
+        level-- if level > 0
         $('h1').animate
           fontSize: '70'
           1000
@@ -16,6 +18,7 @@ $ ->
         $(PAGE).show()
       when 40 # down cursor key
         e.preventDefault()
+        level++
         $("#{PAGE}:eq(#{current})").scrollTop()
         $('h1').animate
           fontSize: '200'

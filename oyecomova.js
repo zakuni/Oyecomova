@@ -7,20 +7,25 @@
   pjax = false;
 
   $(function() {
-    var current;
+    var current, level;
 
     current = 0;
+    level = 1;
     showPage(current);
     return $('html').keydown(function(e) {
       switch (e.which) {
         case 38:
           e.preventDefault();
+          if (level > 0) {
+            level--;
+          }
           $('h1').animate({
             fontSize: '70'
           }, 1000, function() {});
           return $(PAGE).show();
         case 40:
           e.preventDefault();
+          level++;
           $("" + PAGE + ":eq(" + current + ")").scrollTop();
           return $('h1').animate({
             fontSize: '200'
