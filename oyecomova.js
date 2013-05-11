@@ -40,7 +40,7 @@
           return showPage(current);
         case 39:
           e.preventDefault();
-          if (current < $('h1').size() - 1) {
+          if (current < $(PAGE).size() - 1) {
             current++;
           }
           return showPage(current);

@@ -30,7 +30,7 @@ $ ->
         showPage(current)
       when 39 # right cursor key
         e.preventDefault()
-        current++ if current < $('h1').size()-1
+        current++ if current < $(PAGE).size()-1
         showPage(current)
 
 showPage = (index) ->
