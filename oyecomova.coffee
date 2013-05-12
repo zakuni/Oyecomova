@@ -1,4 +1,4 @@
-PAGE = 'section'
+PAGES = 'section'
 pjax = false
 
 $ ->
@@ -15,11 +15,11 @@ $ ->
           fontSize: '70'
           1000
           () ->
-        $(PAGE).show()
+        $(PAGES).show()
       when 40 # down cursor key
         e.preventDefault()
         level++
-        $("#{PAGE}:eq(#{currentPage})").scrollTop()
+        $("#{PAGES}:eq(#{currentPage})").scrollTop()
         $('h1').animate
           fontSize: '200'
           1000
@@ -37,10 +37,10 @@ showPreviousPage = (page) ->
   return page
 
 showNextPage = (page) ->
-  page++ if page < $(PAGE).size()-1
+  page++ if page < $(PAGES).size()-1
   showPage(page)
   return page
 
 showPage = (index) ->
-  $(PAGE).hide();
-  $("#{PAGE}:eq(#{index})").show()
+  $(PAGES).hide();
+  $("#{PAGES}:eq(#{index})").show()
