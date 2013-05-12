@@ -3,3 +3,19 @@ h1 {
     font-size: 200px;
     text-align: center;
 }
+
+.zoomout {
+	-webkit-animation: zoomout 1s ease 0s 1 normal forwards;
+}
+@-webkit-keyframes zoomout {
+	from { font-size: 200px;}
+	to { font-size: 70px;}
+}
+
+.zoomin {
+	-webkit-animation: zoomin 1s ease 0s 1 normal forwards;
+}
+@-webkit-keyframes zoomin {
+	from { font-size: 70px; }
+	to { font-size: 200px; }
+}
