@@ -26,12 +26,20 @@ $ ->
           () -> showPage(currentPage)
       when 37 # left cursor key
         e.preventDefault()
-        currentPage-- if currentPage > 0
-        showPage(currentPage)
+        currentPage = showPreviousPage(currentPage)
       when 39 # right cursor key
         e.preventDefault()
-        currentPage++ if currentPage < $(PAGE).size()-1
-        showPage(currentPage)
+        currentPage = showNextPage(currentPage)
+
+showPreviousPage = (page) ->
+  page-- if page > 0
+  showPage(page)
+  return page
+
+showNextPage = (page) ->
+  page++ if page < $(PAGE).size()-1
+  showPage(page)
+  return page
 
 showPage = (index) ->
   $(PAGE).hide();
