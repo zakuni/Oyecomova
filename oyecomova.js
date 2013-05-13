@@ -19,24 +19,23 @@
           if (level > 0) {
             level--;
           }
-          $('h1').animate({
-            fontSize: '70'
-          }, 1000, function() {});
+          $('h1').removeClass('zoomin');
+          $('h1').addClass('zoomout');
           return $(PAGES).show();
         case 40:
           e.preventDefault();
           level++;
           $("" + PAGES + ":eq(" + currentPage + ")").scrollTop();
-          return $('h1').animate({
-            fontSize: '200'
-          }, 1000, function() {
-            return showPage(currentPage);
-          });
+          $('h1').removeClass('zoomout');
+          $('h1').addClass('zoomin');
+          return showPage(currentPage);
         case 37:
           e.preventDefault();
+          $('h1').removeClass('zoomin').removeClass('zoomout');
           return currentPage = showPreviousPage(currentPage);
         case 39:
           e.preventDefault();
+          $('h1').removeClass('zoomin').removeClass('zoomout');
           return currentPage = showNextPage(currentPage);
       }
     });
