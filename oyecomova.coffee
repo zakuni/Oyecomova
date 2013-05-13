@@ -11,15 +11,13 @@ $ ->
       when 38 # up cursor key
         e.preventDefault()
         level-- if level > 0
-        $('h1').removeClass('zoomin')
-        $('h1').addClass('zoomout')
+        zoomOut()
         $(PAGES).show()
       when 40 # down cursor key
         e.preventDefault()
         level++
         $("#{PAGES}:eq(#{currentPage})").scrollTop()
-        $('h1').removeClass('zoomout')
-        $('h1').addClass('zoomin')
+        zoomIn()
         showPage(currentPage)
       when 37 # left cursor key
         e.preventDefault()
@@ -29,6 +27,14 @@ $ ->
         e.preventDefault()
         $('h1').removeClass('zoomin').removeClass('zoomout')        
         currentPage = showNextPage(currentPage)
+
+zoomIn = () ->
+  $('h1').removeClass('zoomout')
+  $('h1').addClass('zoomin')
+
+zoomOut = () ->
+  $('h1').removeClass('zoomin')
+  $('h1').addClass('zoomout')
 
 showPreviousPage = (page) ->
   page-- if page > 0
