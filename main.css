@@ -18,6 +18,10 @@ h1 {
     text-align: center;
 }
 
+.slideToLeft {
+	-webkit-transform: translate(-100%,0);
+}
+
 .zoomout {
 	-webkit-animation: zoomout 1s ease 0s 1 normal forwards;
 }
