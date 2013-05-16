@@ -6,8 +6,7 @@ $ ->
   currentPage = 0
   level = 1
 
-  $('html').css('overflow', 'hidden')
-  $(PAGES).css('transition', 'all 1s ease')
+  initCSS()
   showPage(currentPage)  
 
   $('html').keydown (e) ->
@@ -31,6 +30,10 @@ $ ->
         e.preventDefault()
         $('h1').removeClass('zoomin').removeClass('zoomout')        
         currentPage = showNextPage(currentPage)
+
+initCSS = () ->
+  $('html').css('overflow', 'hidden')
+  $(PAGES).css('transition', 'all 1s ease')  
 
 zoomIn = () ->
   $('h1').removeClass('zoomout')
