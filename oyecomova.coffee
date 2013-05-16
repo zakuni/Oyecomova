@@ -1,5 +1,6 @@
 PAGES = 'section'
-pjax = false
+PJAX = false
+REPEAT = true 
 
 $ ->
   currentPage = 0
@@ -39,12 +40,18 @@ zoomOut = () ->
   $('h1').addClass('zoomout')
 
 showPreviousPage = (page) ->
-  page-- if page > 0
+  if page > 0
+    page--
+  else
+    page = $(PAGES).size()-1 if REPEAT
   showPage(page)
   return page
 
 showNextPage = (page) ->
-  page++ if page < $(PAGES).size()-1
+  if page < $(PAGES).size()-1 
+    page++ 
+  else
+    page = 0 if REPEAT
   showPage(page)
   return page
 
