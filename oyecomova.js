@@ -13,6 +13,7 @@
 
     currentPage = 0;
     level = 1;
+    $('html').css('overflow', 'hidden');
     $(PAGES).css('transition', 'all 1s ease');
     showPage(currentPage);
     return $('html').keydown(function(e) {
