@@ -43,12 +43,12 @@ showPreviousPage = (page) ->
   if page > 0
     page--
   else
-    page = $(PAGES).size()-1 if REPEAT
+    page = lastPage() if REPEAT
   showPage(page)
   return page
 
 showNextPage = (page) ->
-  if page < $(PAGES).size()-1 
+  if page < lastPage()
     page++ 
   else
     page = 0 if REPEAT
@@ -58,3 +58,4 @@ showNextPage = (page) ->
 showPage = (index) ->
   $(PAGES).css('transform', "translateX(-#{index * 100}%)")
 
+lastPage = () -> $(PAGES).size()-1
