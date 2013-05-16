@@ -29,7 +29,7 @@
           return showPage(currentPage);
         case 37:
           e.preventDefault();
-          zoomout();
+          $('h1').removeClass('zoomin').removeClass('zoomout');
           return currentPage = showPreviousPage(currentPage);
         case 39:
           e.preventDefault();
@@ -66,8 +66,7 @@
   };
 
   showPage = function(index) {
-    $(PAGES).hide();
-    return $("" + PAGES + ":eq(" + index + ")").show();
+    return $(PAGES).css('transform', "translateX(-" + (index * 100) + "%)");
   };
 
 }).call(this);

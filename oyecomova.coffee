@@ -21,7 +21,7 @@ $ ->
         showPage(currentPage)
       when 37 # left cursor key
         e.preventDefault()
-        zoomout()
+        $('h1').removeClass('zoomin').removeClass('zoomout')                
         currentPage = showPreviousPage(currentPage)
       when 39 # right cursor key
         e.preventDefault()
@@ -47,5 +47,5 @@ showNextPage = (page) ->
   return page
 
 showPage = (index) ->
-  $(PAGES).hide();
-  $("#{PAGES}:eq(#{index})").show()
+  $(PAGES).css('transform', "translateX(-#{index * 100}%)")
+
