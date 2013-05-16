@@ -21,7 +21,7 @@ $ ->
         showPage(currentPage)
       when 37 # left cursor key
         e.preventDefault()
-        $('h1').removeClass('zoomin').removeClass('zoomout')
+        zoomout()
         currentPage = showPreviousPage(currentPage)
       when 39 # right cursor key
         e.preventDefault()

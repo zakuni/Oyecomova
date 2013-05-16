@@ -29,7 +29,7 @@
           return showPage(currentPage);
         case 37:
           e.preventDefault();
-          $('h1').removeClass('zoomin').removeClass('zoomout');
+          zoomout();
           return currentPage = showPreviousPage(currentPage);
         case 39:
           e.preventDefault();
