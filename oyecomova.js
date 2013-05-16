@@ -11,6 +11,7 @@
 
     currentPage = 0;
     level = 1;
+    $(PAGES).css('transition', 'all 1s ease');
     showPage(currentPage);
     return $('html').keydown(function(e) {
       switch (e.which) {

@@ -4,7 +4,9 @@ pjax = false
 $ ->
   currentPage = 0
   level = 1
-  showPage(currentPage)
+
+  $(PAGES).css('transition', 'all 1s ease')
+  showPage(currentPage)  
 
   $('html').keydown (e) ->
     switch e.which

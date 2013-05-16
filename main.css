@@ -8,7 +8,6 @@ section {
 	-webkit-box-orient: vertical;		
 	-webkit-box-pack: center;
 	-webkit-box-align: center;
-    -webkit-transition: all 1s ease-in-out;
 	width: 100%;
 	height: 100%;
 }
