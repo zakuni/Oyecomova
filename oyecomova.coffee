@@ -34,7 +34,12 @@ $ ->
 initCSS = () ->
   $('html').css('overflow', 'hidden')
   $(PAGES).parent().css({
-    'display': '-webkit-flex',
+    'display': 'flex',        
+    ### 
+    jquery1.9.1 does not automatically add vendor prefix with 'flex'.
+    and also, only Chrome supports 'flex' for now.
+    ###
+    'display': '-webkit-flex', 
     'flex-wrap': 'nowrap',
     'min-width': "#{$(PAGES).size() * 100}%"
   })
