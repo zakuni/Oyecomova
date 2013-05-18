@@ -33,7 +33,11 @@ $ ->
 
 initCSS = () ->
   $('html').css('overflow', 'hidden')
-  $(PAGES).css('transition', 'all 1s ease')  
+  $(PAGES).css({
+    'width': '100%',
+    'height': '100%',
+    'transition': (index, value) -> 'all 1s ease'
+  })
 
 zoomIn = () ->
   $('h1').removeClass('zoomout')

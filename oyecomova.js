@@ -44,7 +44,13 @@
 
   initCSS = function() {
     $('html').css('overflow', 'hidden');
-    return $(PAGES).css('transition', 'all 1s ease');
+    return $(PAGES).css({
+      'width': '100%',
+      'height': '100%',
+      'transition': function(index, value) {
+        return 'all 1s ease';
+      }
+    });
   };
 
   zoomIn = function() {
