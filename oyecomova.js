@@ -44,6 +44,11 @@
 
   initCSS = function() {
     $('html').css('overflow', 'hidden');
+    $(PAGES).parent().css({
+      'display': '-webkit-flex',
+      'flex-wrap': 'nowrap',
+      'min-width': "" + ($(PAGES).size() * 100) + "%"
+    });
     return $(PAGES).css({
       'width': '100%',
       'height': '100%',

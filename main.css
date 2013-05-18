@@ -1,11 +1,7 @@
 article {
-	display: -webkit-box;
-	-webkit-box-align: center;
 }
 
 section {
-	display: -webkit-flex;
-	-webkit-justify-content: center;
 }
 
 h1 {
