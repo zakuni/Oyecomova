@@ -4,10 +4,8 @@ article {
 }
 
 section {
-	display: -webkit-box;
-	-webkit-box-orient: vertical;		
-	-webkit-box-pack: center;
-	-webkit-box-align: center;
+	display: -webkit-flex;
+	-webkit-justify-content: center;
 }
 
 h1 {
