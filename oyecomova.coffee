@@ -45,8 +45,13 @@ initCSS = () ->
     'min-width': "#{$(PAGES).size() * 100}%"
   })
   $(PAGES).css({
+    'display': 'flex',
+    'display': '-webkit-flex',
+    'justify-content': 'center',
+    'align-items': 'center',
+    'flex-direction': 'column',
     'width': '100%',
-    'height': '100%',
+    'min-height': $(window).height(),
     'transition': (index, value) -> 'all 1s ease'
   })
 
