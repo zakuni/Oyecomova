@@ -59,7 +59,7 @@
     return $(PAGES).css({
       'display': 'flex',
       'display': '-webkit-flex',
-      'justify-content': 'center',
+      'justify-content': 'space-around',
       'align-items': 'center',
       'flex-direction': 'column',
       'width': '100%',
