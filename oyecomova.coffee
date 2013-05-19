@@ -41,6 +41,7 @@ initCSS = () ->
     ###
     'display': '-webkit-flex', 
     'flex-wrap': 'nowrap',
+    'align-items': 'center',
     'min-width': "#{$(PAGES).size() * 100}%"
   })
   $(PAGES).css({
