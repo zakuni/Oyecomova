@@ -1,14 +1,25 @@
+h1, h2, h3, h4, h5, h6, footer {
+    text-align: center;
+}
+
 h1 {
     color: orange;
-    font-size: 200px;
-    text-align: center;
+    font-size: 150px;
+}
+
+h3, h4, footer {
+	color: gray;
+}
+
+h4 {
+	font-size: 30px;
 }
 
 .zoomout {
 	-webkit-animation: zoomout 1s ease 0s 1 normal forwards;
 }
 @-webkit-keyframes zoomout {
-	from { font-size: 200px;}
+	from { font-size: 150px;}
 	to { font-size: 70px;}
 }
 
@@ -17,5 +28,5 @@ h1 {
 }
 @-webkit-keyframes zoomin {
 	from { font-size: 70px; }
-	to { font-size: 200px; }
+	to { font-size: 150px; }
 }
