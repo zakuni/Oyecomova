@@ -30,14 +30,26 @@
           $("" + PAGES + ":eq(" + currentPage + ")").scrollTop();
           zoomIn();
           return showPage(currentPage);
+        case 33:
         case 37:
           e.preventDefault();
           $('h1').removeClass('zoomin').removeClass('zoomout');
           return currentPage = showPreviousPage(currentPage);
+        case 13:
+        case 32:
+        case 34:
         case 39:
           e.preventDefault();
           $('h1').removeClass('zoomin').removeClass('zoomout');
           return currentPage = showNextPage(currentPage);
+        case 36:
+          e.preventDefault();
+          $('h1').removeClass('zoomin').removeClass('zoomout');
+          return currentPage = showPage(0);
+        case 35:
+          e.preventDefault();
+          $('h1').removeClass('zoomin').removeClass('zoomout');
+          return currentPage = showPage(lastPage());
       }
     });
   });

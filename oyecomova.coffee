@@ -22,14 +22,22 @@ $ ->
         $("#{PAGES}:eq(#{currentPage})").scrollTop()
         zoomIn()
         showPage(currentPage)
-      when 37 # left cursor key
+      when 33, 37 # pageup, left cursor key
         e.preventDefault()
         $('h1').removeClass('zoomin').removeClass('zoomout')                
         currentPage = showPreviousPage(currentPage)
-      when 39 # right cursor key
+      when 13, 32, 34, 39 # space, enter, pagedown, right cursor key
         e.preventDefault()
         $('h1').removeClass('zoomin').removeClass('zoomout')        
         currentPage = showNextPage(currentPage)
+      when 36 # home key
+        e.preventDefault()
+        $('h1').removeClass('zoomin').removeClass('zoomout')
+        currentPage = showPage(0)
+      when 35 # end key
+        e.preventDefault()
+        $('h1').removeClass('zoomin').removeClass('zoomout')
+        currentPage = showPage(lastPage())
 
 initCSS = () ->
   $('html').css('overflow', 'hidden')
