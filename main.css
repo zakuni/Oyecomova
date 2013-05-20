@@ -5,6 +5,12 @@
 h1, h2, h3, h4, h5, h6, footer {
 }
 
+a {
+	color: gray;
+	font-weight: bold;
+	text-decoration: none;
+}
+
 h1 {
     color: orange;
     font-size: 150px;

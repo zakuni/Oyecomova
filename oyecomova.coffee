@@ -54,6 +54,10 @@ initCSS = () ->
     'min-height': $(window).height(),
     'transition': (index, value) -> 'all 1s ease'
   })
+  $('a').hover(
+    () -> $(this).css("text-decoration", "underline"), 
+    () -> $(this).css("text-decoration", "none")
+  )
 
 zoomIn = () ->
   $('h1').removeClass('zoomout')
