@@ -22,19 +22,19 @@ $ ->
         $("#{PAGES}:eq(#{currentPage})").scrollTop()
         zoomIn()
         showPage(currentPage)
-      when 33, 37 # pageup, left cursor key
+      when 33, 37, 75 # pageup, left cursor, k key
         e.preventDefault()
         $('h1').removeClass('zoomin').removeClass('zoomout')                
         currentPage = showPreviousPage(currentPage)
-      when 13, 32, 34, 39 # space, enter, pagedown, right cursor key
+      when 13, 32, 34, 39, 74 # space, enter, pagedown, right cursor, j key
         e.preventDefault()
         $('h1').removeClass('zoomin').removeClass('zoomout')        
         currentPage = showNextPage(currentPage)
-      when 36 # home key
+      when 36, 48 # home, 0 key
         e.preventDefault()
         $('h1').removeClass('zoomin').removeClass('zoomout')
         currentPage = showPage(0)
-      when 35 # end key
+      when 35, 52 # end, $ key
         e.preventDefault()
         $('h1').removeClass('zoomin').removeClass('zoomout')
         currentPage = showPage(lastPage())

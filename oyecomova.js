@@ -32,6 +32,7 @@
           return showPage(currentPage);
         case 33:
         case 37:
+        case 75:
           e.preventDefault();
           $('h1').removeClass('zoomin').removeClass('zoomout');
           return currentPage = showPreviousPage(currentPage);
@@ -39,14 +40,17 @@
         case 32:
         case 34:
         case 39:
+        case 74:
           e.preventDefault();
           $('h1').removeClass('zoomin').removeClass('zoomout');
           return currentPage = showNextPage(currentPage);
         case 36:
+        case 48:
           e.preventDefault();
           $('h1').removeClass('zoomin').removeClass('zoomout');
           return currentPage = showPage(0);
         case 35:
+        case 52:
           e.preventDefault();
           $('h1').removeClass('zoomin').removeClass('zoomout');
           return currentPage = showPage(lastPage());
