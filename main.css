@@ -20,8 +20,23 @@ h3, h4, footer {
 	color: gray;
 }
 
+h2 {
+	color: orange;
+	font-size: 100px;
+}
+
 h4 {
 	font-size: 30px;
+}
+
+ul {
+	-webkit-align-self: center;
+}
+
+li {
+	color: #222200;
+	font-size: 50px;
+
 }
 
 .zoomout {
