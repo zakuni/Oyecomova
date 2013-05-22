@@ -92,13 +92,13 @@
   };
 
   zoomIn = function() {
-    $('h1').removeClass('zoomout');
-    return $('h1').addClass('zoomin');
+    $('html').removeClass('zoomout');
+    return $('html').addClass('zoomin');
   };
 
   zoomOut = function() {
-    $('h1').removeClass('zoomin');
-    return $('h1').addClass('zoomout');
+    $('html').removeClass('zoomin');
+    return $('html').addClass('zoomout');
   };
 
   showPreviousPage = function(page) {

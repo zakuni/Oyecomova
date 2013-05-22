@@ -68,12 +68,12 @@ initCSS = () ->
   )
 
 zoomIn = () ->
-  $('h1').removeClass('zoomout')
-  $('h1').addClass('zoomin')
+  $('html').removeClass('zoomout')
+  $('html').addClass('zoomin')
 
 zoomOut = () ->
-  $('h1').removeClass('zoomin')
-  $('h1').addClass('zoomout')
+  $('html').removeClass('zoomin')
+  $('html').addClass('zoomout')
 
 showPreviousPage = (page) ->
   if page > 0

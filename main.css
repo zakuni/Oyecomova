@@ -40,17 +40,11 @@ li {
 }
 
 .zoomout {
-	-webkit-animation: zoomout 1s ease 0s 1 normal forwards;
-}
-@-webkit-keyframes zoomout {
-	from { font-size: 150px;}
-	to { font-size: 70px;}
+	-webkit-transform: scale3d(0.5, 0.5, 0.5);
+	-webkit-transition: -webkit-transform 1s ease;
 }
 
 .zoomin {
-	-webkit-animation: zoomin 1s ease 0s 1 normal forwards;
-}
-@-webkit-keyframes zoomin {
-	from { font-size: 70px; }
-	to { font-size: 150px; }
+	-webkit-transform: scale3d(1.0, 1.0, 1.0);
+	-webkit-transition: -webkit-transform 1s ease;
 }
