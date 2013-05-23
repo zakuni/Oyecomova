@@ -68,12 +68,18 @@ initCSS = () ->
   )
 
 zoomIn = () ->
-  $('html').removeClass('zoomout')
-  $('html').addClass('zoomin')
+  $('html').css({
+    'transform': 'scale3d(1.0, 1.0, 1.0)',
+    'transition': 'transform 1s ease',
+    'transition': '-webkit-transform 1s ease'
+  })
 
 zoomOut = () ->
-  $('html').removeClass('zoomin')
-  $('html').addClass('zoomout')
+  $('html').css({
+    'transform': 'scale3d(0.5, 0.5, 0.5)',
+    'transition': 'transform 1s ease',    
+    'transition': '-webkit-transform 1s ease'
+  })
 
 showPreviousPage = (page) ->
   if page > 0
