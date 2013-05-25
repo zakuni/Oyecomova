@@ -1,0 +1,13 @@
+{
+  "name": "oyecomova.js",
+  "version": "0.0.1",
+  "main": "oyecomova.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "jquery": "1.9.1"
+  }
+}
