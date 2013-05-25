@@ -22,19 +22,16 @@
           if (level > 0) {
             level--;
           }
-          zoomOut();
-          return $(PAGES).show();
+          return zoomOut();
         case 40:
           e.preventDefault();
           level++;
-          $("" + PAGES + ":eq(" + currentPage + ")").scrollTop();
-          zoomIn();
-          return showPage(currentPage);
+          currentPage = showPage(currentPage);
+          return zoomIn();
         case 33:
         case 37:
         case 75:
           e.preventDefault();
-          $('h1').removeClass('zoomin').removeClass('zoomout');
           return currentPage = showPreviousPage(currentPage);
         case 13:
         case 32:
@@ -42,17 +39,14 @@
         case 39:
         case 74:
           e.preventDefault();
-          $('h1').removeClass('zoomin').removeClass('zoomout');
           return currentPage = showNextPage(currentPage);
         case 36:
         case 48:
           e.preventDefault();
-          $('h1').removeClass('zoomin').removeClass('zoomout');
           return currentPage = showPage(0);
         case 35:
         case 52:
           e.preventDefault();
-          $('h1').removeClass('zoomin').removeClass('zoomout');
           return currentPage = showPage(lastPage());
       }
     });
@@ -140,7 +134,6 @@
   };
 
   showPage = function(index) {
-    return $(PAGES).css('transform', "translateX(-" + (index * 100) + "%)");
     $(PAGES).css('transform', "translateX(-" + (index * 100) + "%)");
     return index;
   };
