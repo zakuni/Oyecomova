@@ -39,6 +39,12 @@ $ ->
         $('h1').removeClass('zoomin').removeClass('zoomout')
         currentPage = showPage(lastPage())
 
+  $(PAGES).click (e) ->
+    e.preventDefault()
+    clickedPage = $(PAGES).index($(this))
+    currentPage = showPage(clickedPage)
+    zoomIn()
+
 initCSS = () ->
   $('html').css('overflow', 'hidden')
   $(PAGES).parent().css({

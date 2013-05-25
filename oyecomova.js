@@ -15,7 +15,7 @@
     level = 1;
     initCSS();
     showPage(currentPage);
-    return $('html').keydown(function(e) {
+    $('html').keydown(function(e) {
       switch (e.which) {
         case 38:
           e.preventDefault();
@@ -55,6 +55,14 @@
           $('h1').removeClass('zoomin').removeClass('zoomout');
           return currentPage = showPage(lastPage());
       }
+    });
+    return $(PAGES).click(function(e) {
+      var clickedPage;
+
+      e.preventDefault();
+      clickedPage = $(PAGES).index($(this));
+      currentPage = showPage(clickedPage);
+      return zoomIn();
     });
   });
 
