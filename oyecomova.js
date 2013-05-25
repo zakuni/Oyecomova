@@ -141,6 +141,8 @@
 
   showPage = function(index) {
     return $(PAGES).css('transform', "translateX(-" + (index * 100) + "%)");
+    $(PAGES).css('transform', "translateX(-" + (index * 100) + "%)");
+    return index;
   };
 
   lastPage = function() {

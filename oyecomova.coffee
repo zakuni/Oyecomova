@@ -105,5 +105,6 @@ showNextPage = (page) ->
 
 showPage = (index) ->
   $(PAGES).css('transform', "translateX(-#{index * 100}%)")
+  return index
 
 lastPage = () -> $(PAGES).size()-1
