@@ -74,7 +74,7 @@
       'align-items': 'center',
       'min-width': "" + ($(PAGES).size() * 100) + "%"
     });
-    $(PAGES).css({
+    return $(PAGES).css({
       'display': 'flex',
       'display': '-webkit-flex',
       'justify-content': 'space-around',
@@ -85,11 +85,6 @@
       'transition': function(index, value) {
         return 'all 1s ease';
       }
-    });
-    return $('a').hover(function() {
-      return $(this).css("text-decoration", "underline");
-    }, function() {
-      return $(this).css("text-decoration", "none");
     });
   };
 
