@@ -62,6 +62,9 @@
   });
 
   Appearance = Backbone.Model.extend({
+    defaults: {
+      direction: 'horizontal'
+    },
     initCSS: function() {
       $('html').css('overflow', 'hidden');
       $(PAGES).parent().css({

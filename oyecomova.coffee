@@ -41,6 +41,9 @@ $ ->
     zoomIn()
 
 Appearance = Backbone.Model.extend
+  defaults:
+    direction: 'horizontal'
+    
   initCSS: ->
     $('html').css('overflow', 'hidden')
     $(PAGES).parent().css
