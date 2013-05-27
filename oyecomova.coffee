@@ -6,7 +6,8 @@ $ ->
   currentPage = 0
   level = 1
 
-  initCSS()
+  appearance = new Appearance()
+  appearance.initCSS()
   showPage(currentPage)  
 
   $('html').keydown (e) ->
@@ -39,20 +40,21 @@ $ ->
     currentPage = showPage(clickedPage)
     zoomIn()
 
-initCSS = () ->
-  $('html').css('overflow', 'hidden')
-  $(PAGES).parent().css({
-    'display': 'flex',        
-    ### 
-    jquery1.9.1 does not automatically add vendor prefix with 'flex'.
-    and also, only Chrome supports 'flex' for now.
-    ###
-    'display': '-webkit-flex', 
-    'flex-wrap': 'nowrap',
-    'align-items': 'center',
-    'min-width': "#{$(PAGES).size() * 100}%"
-  })
-  $(PAGES).css({
+Appearance = Backbone.Model.extend
+  initCSS: ->
+    $('html').css('overflow', 'hidden')
+    $(PAGES).parent().css
+      'display': 'flex',        
+      ### 
+      jquery1.9.1 does not automatically add vendor prefix with 'flex'.
+      and also, only Chrome supports 'flex' for now.
+      ###
+      'display': '-webkit-flex', 
+      'flex-wrap': 'nowrap',
+      'align-items': 'center',
+      'min-width': "#{$(PAGES).size() * 100}%"
+
+  $(PAGES).css
     'display': 'flex',
     'display': '-webkit-flex',
     'justify-content': 'space-around',
@@ -61,21 +63,18 @@ initCSS = () ->
     'width': '100%',
     'min-height': $(window).height(),
     'transition': (index, value) -> 'all 1s ease'
-  })
 
 zoomIn = () ->
-  $('html').css({
+  $('html').css
     'transform': 'scale3d(1.0, 1.0, 1.0)',
     'transition': 'transform 1s ease',
     'transition': '-webkit-transform 1s ease'
-  })
 
 zoomOut = () ->
-  $('html').css({
+  $('html').css
     'transform': 'scale3d(0.5, 0.5, 0.5)',
     'transition': 'transform 1s ease',    
     'transition': '-webkit-transform 1s ease'
-  })
 
 showPreviousPage = (page) ->
   if page > 0
