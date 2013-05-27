@@ -64,7 +64,7 @@
   Appearance = Backbone.Model.extend({
     initCSS: function() {
       $('html').css('overflow', 'hidden');
-      return $(PAGES).parent().css({
+      $(PAGES).parent().css({
         'display': 'flex',
         /* 
         jquery1.9.1 does not automatically add vendor prefix with 'flex'.
@@ -76,19 +76,20 @@
         'align-items': 'center',
         'min-width': "" + ($(PAGES).size() * 100) + "%"
       });
+      return $(PAGES).css({
+        'display': 'flex',
+        'display': '-webkit-flex',
+        'justify-content': 'space-around',
+        'align-items': 'center',
+        'flex-direction': 'column',
+        'width': '100%',
+        'min-height': $(window).height(),
+        'transition': function(index, value) {
+          return 'all 1s ease';
+        }
+      });
     }
-  }, $(PAGES).css({
-    'display': 'flex',
-    'display': '-webkit-flex',
-    'justify-content': 'space-around',
-    'align-items': 'center',
-    'flex-direction': 'column',
-    'width': '100%',
-    'min-height': $(window).height(),
-    'transition': function(index, value) {
-      return 'all 1s ease';
-    }
-  }));
+  });
 
   zoomIn = function() {
     return $('html').css({

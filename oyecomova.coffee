@@ -53,16 +53,15 @@ Appearance = Backbone.Model.extend
       'flex-wrap': 'nowrap'
       'align-items': 'center'
       'min-width': "#{$(PAGES).size() * 100}%"
-
-  $(PAGES).css
-    'display': 'flex'
-    'display': '-webkit-flex'
-    'justify-content': 'space-around'
-    'align-items': 'center'
-    'flex-direction': 'column'
-    'width': '100%'
-    'min-height': $(window).height()
-    'transition': (index, value) -> 'all 1s ease'
+    $(PAGES).css
+      'display': 'flex'
+      'display': '-webkit-flex'
+      'justify-content': 'space-around'
+      'align-items': 'center'
+      'flex-direction': 'column'
+      'width': '100%'
+      'min-height': $(window).height()
+      'transition': (index, value) -> 'all 1s ease'
 
 zoomIn = () ->
   $('html').css
