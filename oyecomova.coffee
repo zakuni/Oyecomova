@@ -10,17 +10,19 @@ $ ->
   appearance.initCSS()
   showPage(currentPage)  
 
+  entireView = new EntireView()
+
   $('html').keydown (e) ->
     switch e.which
       when 38 # up cursor key
         e.preventDefault()
         level-- if level > 0
-        zoomOut()
+        entireView.zoomOut()
       when 40 # down cursor key
         e.preventDefault()
         level++
         currentPage = showPage(currentPage)
-        zoomIn()        
+        entireView.zoomIn()        
       when 33, 37, 75 # pageup, left cursor, k key
         e.preventDefault()
         currentPage = showPreviousPage(currentPage)
@@ -38,7 +40,7 @@ $ ->
     e.preventDefault()
     clickedPage = $(PAGES).index($(this))
     currentPage = showPage(clickedPage)
-    zoomIn()
+    entireView.zoomIn()
 
 Appearance = Backbone.Model.extend
   defaults:
@@ -66,17 +68,21 @@ Appearance = Backbone.Model.extend
       'min-height': $(window).height()
       'transition': (index, value) -> 'all 1s ease'
 
-zoomIn = () ->
-  $('html').css
-    'transform': 'scale3d(1.0, 1.0, 1.0)'
-    'transition': 'transform 1s ease'
-    'transition': '-webkit-transform 1s ease'
+EntireView = Backbone.View.extend(
+  el: 'html'
 
-zoomOut = () ->
-  $('html').css
-    'transform': 'scale3d(0.5, 0.5, 0.5)'
-    'transition': 'transform 1s ease' 
-    'transition': '-webkit-transform 1s ease'
+  zoomIn: ->
+    this.$el.css
+      'transform': 'scale3d(1.0, 1.0, 1.0)'
+      'transition': 'transform 1s ease'
+      'transition': '-webkit-transform 1s ease'
+
+  zoomOut: ->
+    this.$el.css
+      'transform': 'scale3d(0.5, 0.5, 0.5)'
+      'transition': 'transform 1s ease' 
+      'transition': '-webkit-transform 1s ease'      
+)
 
 showPreviousPage = (page) ->
   if page > 0
