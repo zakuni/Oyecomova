@@ -68,6 +68,11 @@ Appearance = Backbone.Model.extend
       'min-height': $(window).height()
       'transition': (index, value) -> 'all 1s ease'
 
+Position = Backbone.Model.extend
+  defaults:
+    page: 0
+    level: 0
+
 EntireView = Backbone.View.extend(
   el: 'html'
 
