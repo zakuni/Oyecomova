@@ -3,12 +3,10 @@ PJAX = false
 REPEAT = true 
 
 $ ->
-  currentPage = 0
-  level = 1
-
+  currentPosition = new Position()  
   appearance = new Appearance()
   appearance.initCSS()
-  showPage(currentPage)  
+  showPage(currentPosition.get('page'))  
 
   entireView = new EntireView()
 
@@ -16,30 +14,34 @@ $ ->
     switch e.which
       when 38 # up cursor key
         e.preventDefault()
-        level-- if level > 0
         entireView.zoomOut()
       when 40 # down cursor key
         e.preventDefault()
-        level++
-        currentPage = showPage(currentPage)
+        currentPosition.set
+          'page': showPage(currentPosition.get('page'))
         entireView.zoomIn()        
       when 33, 37, 75 # pageup, left cursor, k key
         e.preventDefault()
-        currentPage = showPreviousPage(currentPage)
+        currentPosition.set
+          'page': showPreviousPage(currentPosition.get('page'))
       when 13, 32, 34, 39, 74 # space, enter, pagedown, right cursor, j key
         e.preventDefault()
-        currentPage = showNextPage(currentPage)
+        currentPosition.set
+          'page': showNextPage(currentPosition.get('page'))
       when 36, 48 # home, 0 key
         e.preventDefault()
-        currentPage = showPage(0)
+        currentPosition.set
+          'page': showPage(0)
       when 35, 52 # end, $ key
         e.preventDefault()
-        currentPage = showPage(lastPage())
+        currentPosition.set
+          'page': showPage(lastPage())
 
   $(PAGES).click (e) ->
     e.preventDefault()
     clickedPage = $(PAGES).index($(this))
-    currentPage = showPage(clickedPage)
+    currentPosition.set
+      'page': showPage(clickedPage)
     entireView.zoomIn()
 
 Appearance = Backbone.Model.extend

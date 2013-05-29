@@ -9,47 +9,52 @@
   REPEAT = true;
 
   $(function() {
-    var appearance, currentPage, entireView, level;
+    var appearance, currentPosition, entireView;
 
-    currentPage = 0;
-    level = 1;
+    currentPosition = new Position();
     appearance = new Appearance();
     appearance.initCSS();
-    showPage(currentPage);
+    showPage(currentPosition.get('page'));
     entireView = new EntireView();
     $('html').keydown(function(e) {
       switch (e.which) {
         case 38:
           e.preventDefault();
-          if (level > 0) {
-            level--;
-          }
           return entireView.zoomOut();
         case 40:
           e.preventDefault();
-          level++;
-          currentPage = showPage(currentPage);
+          currentPosition.set({
+            'page': showPage(currentPosition.get('page'))
+          });
           return entireView.zoomIn();
         case 33:
         case 37:
         case 75:
           e.preventDefault();
-          return currentPage = showPreviousPage(currentPage);
+          return currentPosition.set({
+            'page': showPreviousPage(currentPosition.get('page'))
+          });
         case 13:
         case 32:
         case 34:
         case 39:
         case 74:
           e.preventDefault();
-          return currentPage = showNextPage(currentPage);
+          return currentPosition.set({
+            'page': showNextPage(currentPosition.get('page'))
+          });
         case 36:
         case 48:
           e.preventDefault();
-          return currentPage = showPage(0);
+          return currentPosition.set({
+            'page': showPage(0)
+          });
         case 35:
         case 52:
           e.preventDefault();
-          return currentPage = showPage(lastPage());
+          return currentPosition.set({
+            'page': showPage(lastPage())
+          });
       }
     });
     return $(PAGES).click(function(e) {
@@ -57,7 +62,9 @@
 
       e.preventDefault();
       clickedPage = $(PAGES).index($(this));
-      currentPage = showPage(clickedPage);
+      currentPosition.set({
+        'page': showPage(clickedPage)
+      });
       return entireView.zoomIn();
     });
   });
