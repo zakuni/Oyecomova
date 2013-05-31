@@ -54,22 +54,23 @@ EntireView = Backbone.View.extend
       when 33, 37, 75 # pageup, left cursor, k key
         e.preventDefault()
         destination = this.model.get('page')-1
-        if destination < 0
-          destination = if REPEAT then lastPage() else 0
+        if destination < firstPage()
+          destination = if REPEAT then lastPage() else firstPage()
         this.model.set('page': destination)
       when 13, 32, 34, 39, 74 # space, enter, pagedown, right cursor, j key
         e.preventDefault()
         destination = this.model.get('page')+1
         if destination > lastPage()
-          destination = if REPEAT then 0 else lastPage()
+          destination = if REPEAT then firstPage() else lastPage()
         this.model.set('page': destination)
       when 36, 48 # home, 0 key
         e.preventDefault()
-        this.model.set('page': 0)
+        this.model.set('page': firstPage())
       when 35, 52 # end, $ key
         e.preventDefault()
         this.model.set('page': lastPage())
 
+firstPage = () -> 0
 lastPage = () -> $(PAGES).size()-1
 
 $ ->
