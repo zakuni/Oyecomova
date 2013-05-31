@@ -81,6 +81,5 @@ $ ->
   $(PAGES).click (e) ->
     e.preventDefault()
     clickedPage = $(PAGES).index($(this))
-    slide.set
-      'page': showPage(clickedPage)
+    slide.set('page': clickedPage)
     entireView.zoomIn()

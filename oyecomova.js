@@ -129,7 +129,7 @@
       e.preventDefault();
       clickedPage = $(PAGES).index($(this));
       slide.set({
-        'page': showPage(clickedPage)
+        'page': clickedPage
       });
       return entireView.zoomIn();
     });
