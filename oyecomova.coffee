@@ -3,12 +3,11 @@ PJAX = false
 REPEAT = true 
 
 $ ->
-  currentPosition = new Position()  
-  appearance = new Appearance()
-  appearance.initCSS()
-  showPage(currentPosition.get('page'))  
+  slide = new Slide
+  entireView = new EntireView(model: slide)
+  entireView.initCSS()
 
-  entireView = new EntireView()
+  entireView.listenTo(slide, 'change:page', entireView.showPage)
 
   $('html').keydown (e) ->
     switch e.which
@@ -17,37 +16,44 @@ $ ->
         entireView.zoomOut()
       when 40 # down cursor key
         e.preventDefault()
-        currentPosition.set
-          'page': showPage(currentPosition.get('page'))
+        entireView.showPage()
+        # slide.set
+        #   'page': showPage(slide.get('page'))
         entireView.zoomIn()        
       when 33, 37, 75 # pageup, left cursor, k key
         e.preventDefault()
-        currentPosition.set
-          'page': showPreviousPage(currentPosition.get('page'))
+        destination = slide.get('page')-1
+        if destination < 0
+          destination = if REPEAT then lastPage() else 0
+        slide.set('page': destination)
       when 13, 32, 34, 39, 74 # space, enter, pagedown, right cursor, j key
         e.preventDefault()
-        currentPosition.set
-          'page': showNextPage(currentPosition.get('page'))
+        destination = slide.get('page')+1
+        if destination > lastPage()
+          destination = if REPEAT then 0 else lastPage()
+        slide.set('page': destination)
       when 36, 48 # home, 0 key
         e.preventDefault()
-        currentPosition.set
-          'page': showPage(0)
+        slide.set('page': 0)
       when 35, 52 # end, $ key
         e.preventDefault()
-        currentPosition.set
-          'page': showPage(lastPage())
+        slide.set('page': lastPage())
 
   $(PAGES).click (e) ->
     e.preventDefault()
     clickedPage = $(PAGES).index($(this))
-    currentPosition.set
+    slide.set
       'page': showPage(clickedPage)
     entireView.zoomIn()
 
-Appearance = Backbone.Model.extend
+Position = Backbone.Model.extend
   defaults:
-    direction: 'horizontal'
-    
+    page: 0
+    level: 0
+
+EntireView = Backbone.View.extend
+  el: 'html'
+
   initCSS: ->
     $('html').css('overflow', 'hidden')
     $(PAGES).parent().css
@@ -70,14 +76,6 @@ Appearance = Backbone.Model.extend
       'min-height': $(window).height()
       'transition': (index, value) -> 'all 1s ease'
 
-Position = Backbone.Model.extend
-  defaults:
-    page: 0
-    level: 0
-
-EntireView = Backbone.View.extend(
-  el: 'html'
-
   zoomIn: ->
     this.$el.css
       'transform': 'scale3d(1.0, 1.0, 1.0)'
@@ -88,8 +86,15 @@ EntireView = Backbone.View.extend(
     this.$el.css
       'transform': 'scale3d(0.5, 0.5, 0.5)'
       'transition': 'transform 1s ease' 
-      'transition': '-webkit-transform 1s ease'      
-)
+      'transition': '-webkit-transform 1s ease'
+
+  showPage: ->
+    console.log 'showPage' + this.model.get('page')
+    $(PAGES).css('transform', "translateX(-#{this.model.get('page') * 100}%)")
+
+Slide = Backbone.Model.extend
+  defaults:
+    page: 0
 
 showPreviousPage = (page) ->
   if page > 0
