@@ -2,6 +2,48 @@ PAGES = 'section'
 PJAX = false
 REPEAT = true 
 
+Slide = Backbone.Model.extend
+  defaults:
+    page: 0
+
+EntireView = Backbone.View.extend
+  el: 'html'
+  initCSS: ->
+    $('html').css('overflow', 'hidden')
+    $(PAGES).parent().css
+      'display': 'flex'       
+      ### 
+      jquery1.9.1 does not automatically add vendor prefix with 'flex'.
+      and also, only Chrome supports 'flex' for now.
+      ###
+      'display': '-webkit-flex'
+      'flex-wrap': 'nowrap'
+      'align-items': 'center'
+      'min-width': "#{$(PAGES).size() * 100}%"
+    $(PAGES).css
+      'display': 'flex'
+      'display': '-webkit-flex'
+      'justify-content': 'space-around'
+      'align-items': 'center'
+      'flex-direction': 'column'
+      'width': '100%'
+      'min-height': $(window).height()
+      'transition': (index, value) -> 'all 1s ease'
+  zoomIn: ->
+    this.$el.css
+      'transform': 'scale3d(1.0, 1.0, 1.0)'
+      'transition': 'transform 1s ease'
+      'transition': '-webkit-transform 1s ease'
+  zoomOut: ->
+    this.$el.css
+      'transform': 'scale3d(0.5, 0.5, 0.5)'
+      'transition': 'transform 1s ease' 
+      'transition': '-webkit-transform 1s ease'
+  showPage: ->
+    $(PAGES).css('transform', "translateX(-#{this.model.get('page') * 100}%)")
+
+lastPage = () -> $(PAGES).size()-1
+
 $ ->
   slide = new Slide
   entireView = new EntireView(model: slide)
@@ -16,9 +58,6 @@ $ ->
         entireView.zoomOut()
       when 40 # down cursor key
         e.preventDefault()
-        entireView.showPage()
-        # slide.set
-        #   'page': showPage(slide.get('page'))
         entireView.zoomIn()        
       when 33, 37, 75 # pageup, left cursor, k key
         e.preventDefault()
@@ -45,75 +84,3 @@ $ ->
     slide.set
       'page': showPage(clickedPage)
     entireView.zoomIn()
-
-Position = Backbone.Model.extend
-  defaults:
-    page: 0
-    level: 0
-
-EntireView = Backbone.View.extend
-  el: 'html'
-
-  initCSS: ->
-    $('html').css('overflow', 'hidden')
-    $(PAGES).parent().css
-      'display': 'flex'       
-      ### 
-      jquery1.9.1 does not automatically add vendor prefix with 'flex'.
-      and also, only Chrome supports 'flex' for now.
-      ###
-      'display': '-webkit-flex'
-      'flex-wrap': 'nowrap'
-      'align-items': 'center'
-      'min-width': "#{$(PAGES).size() * 100}%"
-    $(PAGES).css
-      'display': 'flex'
-      'display': '-webkit-flex'
-      'justify-content': 'space-around'
-      'align-items': 'center'
-      'flex-direction': 'column'
-      'width': '100%'
-      'min-height': $(window).height()
-      'transition': (index, value) -> 'all 1s ease'
-
-  zoomIn: ->
-    this.$el.css
-      'transform': 'scale3d(1.0, 1.0, 1.0)'
-      'transition': 'transform 1s ease'
-      'transition': '-webkit-transform 1s ease'
-
-  zoomOut: ->
-    this.$el.css
-      'transform': 'scale3d(0.5, 0.5, 0.5)'
-      'transition': 'transform 1s ease' 
-      'transition': '-webkit-transform 1s ease'
-
-  showPage: ->
-    console.log 'showPage' + this.model.get('page')
-    $(PAGES).css('transform', "translateX(-#{this.model.get('page') * 100}%)")
-
-Slide = Backbone.Model.extend
-  defaults:
-    page: 0
-
-showPreviousPage = (page) ->
-  if page > 0
-    page--
-  else
-    page = lastPage() if REPEAT
-  showPage(page)
-  return page
-
-showNextPage = (page) ->
-  if page < lastPage()
-    page++ 
-  else
-    page = 0 if REPEAT
-  showPage(page)
-  return page
-
-showPage = (index) ->
-  $(PAGES).css('transform', "translateX(-#{index * 100}%)")
-  return index
-
-lastPage = () -> $(PAGES).size()-1
