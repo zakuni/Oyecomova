@@ -16,8 +16,11 @@
 
   EntireView = Backbone.View.extend({
     el: 'html',
+    events: {
+      'keydown': 'onKeyDown'
+    },
     initCSS: function() {
-      $('html').css('overflow', 'hidden');
+      this.$el.css('overflow', 'hidden');
       $(PAGES).parent().css({
         'display': 'flex',
         /* 
@@ -59,6 +62,54 @@
     },
     showPage: function() {
       return $(PAGES).css('transform', "translateX(-" + (this.model.get('page') * 100) + "%)");
+    },
+    onKeyDown: function(e) {
+      var destination;
+
+      switch (e.which) {
+        case 38:
+          e.preventDefault();
+          return this.zoomOut();
+        case 40:
+          e.preventDefault();
+          return this.zoomIn();
+        case 33:
+        case 37:
+        case 75:
+          e.preventDefault();
+          destination = this.model.get('page') - 1;
+          if (destination < 0) {
+            destination = REPEAT ? lastPage() : 0;
+          }
+          return this.model.set({
+            'page': destination
+          });
+        case 13:
+        case 32:
+        case 34:
+        case 39:
+        case 74:
+          e.preventDefault();
+          destination = this.model.get('page') + 1;
+          if (destination > lastPage()) {
+            destination = REPEAT ? 0 : lastPage();
+          }
+          return this.model.set({
+            'page': destination
+          });
+        case 36:
+        case 48:
+          e.preventDefault();
+          return this.model.set({
+            'page': 0
+          });
+        case 35:
+        case 52:
+          e.preventDefault();
+          return this.model.set({
+            'page': lastPage()
+          });
+      }
     }
   });
 
@@ -75,54 +126,6 @@
     });
     entireView.initCSS();
     entireView.listenTo(slide, 'change:page', entireView.showPage);
-    $('html').keydown(function(e) {
-      var destination;
-
-      switch (e.which) {
-        case 38:
-          e.preventDefault();
-          return entireView.zoomOut();
-        case 40:
-          e.preventDefault();
-          return entireView.zoomIn();
-        case 33:
-        case 37:
-        case 75:
-          e.preventDefault();
-          destination = slide.get('page') - 1;
-          if (destination < 0) {
-            destination = REPEAT ? lastPage() : 0;
-          }
-          return slide.set({
-            'page': destination
-          });
-        case 13:
-        case 32:
-        case 34:
-        case 39:
-        case 74:
-          e.preventDefault();
-          destination = slide.get('page') + 1;
-          if (destination > lastPage()) {
-            destination = REPEAT ? 0 : lastPage();
-          }
-          return slide.set({
-            'page': destination
-          });
-        case 36:
-        case 48:
-          e.preventDefault();
-          return slide.set({
-            'page': 0
-          });
-        case 35:
-        case 52:
-          e.preventDefault();
-          return slide.set({
-            'page': lastPage()
-          });
-      }
-    });
     return $(PAGES).click(function(e) {
       var clickedPage;
 

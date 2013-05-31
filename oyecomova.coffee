@@ -8,8 +8,10 @@ Slide = Backbone.Model.extend
 
 EntireView = Backbone.View.extend
   el: 'html'
+  events:
+    'keydown': 'onKeyDown'
   initCSS: ->
-    $('html').css('overflow', 'hidden')
+    this.$el.css('overflow', 'hidden')
     $(PAGES).parent().css
       'display': 'flex'       
       ### 
@@ -41,6 +43,32 @@ EntireView = Backbone.View.extend
       'transition': '-webkit-transform 1s ease'
   showPage: ->
     $(PAGES).css('transform', "translateX(-#{this.model.get('page') * 100}%)")
+  onKeyDown: (e)->
+    switch e.which
+      when 38 # up cursor key
+        e.preventDefault()
+        this.zoomOut()
+      when 40 # down cursor key
+        e.preventDefault()
+        this.zoomIn()        
+      when 33, 37, 75 # pageup, left cursor, k key
+        e.preventDefault()
+        destination = this.model.get('page')-1
+        if destination < 0
+          destination = if REPEAT then lastPage() else 0
+        this.model.set('page': destination)
+      when 13, 32, 34, 39, 74 # space, enter, pagedown, right cursor, j key
+        e.preventDefault()
+        destination = this.model.get('page')+1
+        if destination > lastPage()
+          destination = if REPEAT then 0 else lastPage()
+        this.model.set('page': destination)
+      when 36, 48 # home, 0 key
+        e.preventDefault()
+        this.model.set('page': 0)
+      when 35, 52 # end, $ key
+        e.preventDefault()
+        this.model.set('page': lastPage())
 
 lastPage = () -> $(PAGES).size()-1
 
@@ -50,33 +78,6 @@ $ ->
   entireView.initCSS()
 
   entireView.listenTo(slide, 'change:page', entireView.showPage)
-
-  $('html').keydown (e) ->
-    switch e.which
-      when 38 # up cursor key
-        e.preventDefault()
-        entireView.zoomOut()
-      when 40 # down cursor key
-        e.preventDefault()
-        entireView.zoomIn()        
-      when 33, 37, 75 # pageup, left cursor, k key
-        e.preventDefault()
-        destination = slide.get('page')-1
-        if destination < 0
-          destination = if REPEAT then lastPage() else 0
-        slide.set('page': destination)
-      when 13, 32, 34, 39, 74 # space, enter, pagedown, right cursor, j key
-        e.preventDefault()
-        destination = slide.get('page')+1
-        if destination > lastPage()
-          destination = if REPEAT then 0 else lastPage()
-        slide.set('page': destination)
-      when 36, 48 # home, 0 key
-        e.preventDefault()
-        slide.set('page': 0)
-      when 35, 52 # end, $ key
-        e.preventDefault()
-        slide.set('page': lastPage())
 
   $(PAGES).click (e) ->
     e.preventDefault()
