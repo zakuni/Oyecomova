@@ -31,6 +31,7 @@ EntireView = Backbone.View.extend
       'width': '100%'
       'min-height': $(window).height()
       'transition': (index, value) -> 'all 1s ease'
+      'page-break-after': 'always'
   zoomIn: ->
     this.$el.css
       'transform': 'scale3d(1.0, 1.0, 1.0)'
@@ -85,3 +86,13 @@ $ ->
     clickedPage = $(PAGES).index($(this))
     slide.set('page': clickedPage)
     entireView.zoomIn()
+
+  mediaQueryList = window.matchMedia('print')
+  mediaQueryList.addListener (mql) ->
+    if (mql.matches)
+        $(PAGES).parent().css
+          'display': 'inline'
+    else
+        $(PAGES).parent().css
+          'display': 'flex'
+          'display': '-webkit-flex'    
