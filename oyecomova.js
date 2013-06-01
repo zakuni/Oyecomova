@@ -47,16 +47,30 @@
         'page-break-after': 'always'
       });
     },
-    zoomIn: function() {
+    zoom: function(level) {
+      var x, y, z;
+
+      x = y = z = 1 / level;
       return this.$el.css({
-        'transform': 'scale3d(1.0, 1.0, 1.0)',
+        'transform': "scale3d(" + x + ", " + y + ", " + z
+      });
+    },
+    zoomIn: function() {
+      var x, y, z;
+
+      x = y = z = 1;
+      return this.$el.css({
+        'transform': "scale3d(" + x + ", " + y + ", " + z + ")",
         'transition': 'transform 1s ease',
         'transition': '-webkit-transform 1s ease'
       });
     },
     zoomOut: function() {
+      var x, y, z;
+
+      x = y = z = 0.5;
       return this.$el.css({
-        'transform': 'scale3d(0.5, 0.5, 0.5)',
+        'transform': "scale3d(" + x + ", " + y + ", " + z + ")",
         'transition': 'transform 1s ease',
         'transition': '-webkit-transform 1s ease'
       });

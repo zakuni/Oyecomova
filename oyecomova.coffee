@@ -32,14 +32,20 @@ EntireView = Backbone.View.extend
       'min-height': $(window).height()
       'transition': (index, value) -> 'all 1s ease'
       'page-break-after': 'always'
-  zoomIn: ->
+  zoom: (level) ->
+    x = y = z = 1/level    
     this.$el.css
-      'transform': 'scale3d(1.0, 1.0, 1.0)'
+      'transform': "scale3d(#{x}, #{y}, #{z}"
+  zoomIn: ->
+    x = y = z = 1    
+    this.$el.css
+      'transform': "scale3d(#{x}, #{y}, #{z})"      
       'transition': 'transform 1s ease'
       'transition': '-webkit-transform 1s ease'
   zoomOut: ->
+    x = y = z = 0.5    
     this.$el.css
-      'transform': 'scale3d(0.5, 0.5, 0.5)'
+      'transform': "scale3d(#{x}, #{y}, #{z})"
       'transition': 'transform 1s ease' 
       'transition': '-webkit-transform 1s ease'
   showPage: ->
@@ -95,4 +101,4 @@ $ ->
     else
         $(PAGES).parent().css
           'display': 'flex'
-          'display': '-webkit-flex'    
+          'display': '-webkit-flex'
