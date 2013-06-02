@@ -53,7 +53,7 @@
 
       x = y = z = 1 / level;
       return this.$el.css({
-        'transform': "scale3d(" + x + ", " + y + ", " + z
+        'transform': "scale3d(" + x + ", " + y + ", " + z + ")"
       });
     },
     zoomIn: function() {

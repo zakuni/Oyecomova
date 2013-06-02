@@ -36,7 +36,7 @@ EntireView = Backbone.View.extend
   zoom: (level) ->
     x = y = z = 1/level    
     this.$el.css
-      'transform': "scale3d(#{x}, #{y}, #{z}"
+      'transform': "scale3d(#{x}, #{y}, #{z})"
   zoomIn: ->
     x = y = z = 1    
     this.$el.css
