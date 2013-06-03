@@ -2,6 +2,6 @@
 
 ## Installation
 
-use bower
+use [bower](http://bower.io/)
 
     $ bower install oyecomova.js
