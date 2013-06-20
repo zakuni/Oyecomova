@@ -146,6 +146,7 @@
     });
     entireView.initCSS();
     entireView.listenTo(slide, 'change:page', entireView.showPage);
+    entireView.listenTo(slide, 'change:altitude', entireView.zoom);
     $(PAGES).click(function(e) {
       var clickedPage;
 
