@@ -8,5 +8,5 @@ use [bower](http://bower.io/)
 
 load in oyecomova.js script in HTML
 ```html
-<script data-main="app.js" src="lib/require.js"></script>
+<script src="oyecomova.js"></script>
 ```
