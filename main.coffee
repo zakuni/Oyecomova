@@ -10,15 +10,10 @@ require.config
 		"underscore": exports: "_"
 		"jquery": exports: "$"
 
-require ["backbone"], (Backbone) ->
+require ["backbone", "models/slide"], (Backbone, Slide) ->
 	PAGES = 'section'
 	PJAX = false
 	REPEAT = true 
-
-	Slide = Backbone.Model.extend
-	  defaults:
-	    page: 0
-	    altitude: 0
 
 	EntireView = Backbone.View.extend
 	  el: 'html'

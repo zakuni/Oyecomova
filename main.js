@@ -20,18 +20,12 @@
     }
   });
 
-  require(["backbone"], function(Backbone) {
-    var EntireView, PAGES, PJAX, REPEAT, Slide, firstPage, lastPage;
+  require(["backbone", "models/slide"], function(Backbone, Slide) {
+    var EntireView, PAGES, PJAX, REPEAT, firstPage, lastPage;
 
     PAGES = 'section';
     PJAX = false;
     REPEAT = true;
-    Slide = Backbone.Model.extend({
-      defaults: {
-        page: 0,
-        altitude: 0
-      }
-    });
     EntireView = Backbone.View.extend({
       el: 'html',
       events: {
