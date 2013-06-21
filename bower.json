@@ -11,11 +11,12 @@
     "*.coffee"
   ],
   "dependencies": {
+    "requirejs": "latest",    
     "backbone": "1.0.0",
     "underscore": "1.4.4",
     "jquery": "1.10.1"
   },
   "devDependencies": {
-    "requirejs": "latest"
+
   }
 }
