@@ -10,3 +10,6 @@ load in oyecomova.js script in HTML
 ```html
 <script src="oyecomova.js"></script>
 ```
+
+## Supported Browsers
+* Google Chrome 27+
