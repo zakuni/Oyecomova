@@ -11,7 +11,6 @@ require.config
 		"jquery": exports: "$"
 
 require ["backbone", "models/slide"], (Backbone, Slide) ->
-	PAGES = 'section'	
 	PJAX = false
 	REPEAT = true 
 
@@ -91,6 +90,7 @@ require ["backbone", "models/slide"], (Backbone, Slide) ->
     lastPage: () -> $(this.options.pages).size()-1
 
 	$ ->
+		PAGES = 'section'			
 		slide = new Slide
 		entireView = new EntireView(
 	  	model: slide

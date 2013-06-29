@@ -21,9 +21,8 @@
   });
 
   require(["backbone", "models/slide"], function(Backbone, Slide) {
-    var EntireView, PAGES, PJAX, REPEAT;
+    var EntireView, PJAX, REPEAT;
 
-    PAGES = 'section';
     PJAX = false;
     REPEAT = true;
     EntireView = Backbone.View.extend({
@@ -148,8 +147,9 @@
       }
     });
     return $(function() {
-      var entireView, mediaQueryList, slide;
+      var PAGES, entireView, mediaQueryList, slide;
 
+      PAGES = 'section';
       slide = new Slide;
       entireView = new EntireView({
         model: slide,
