@@ -85,6 +85,8 @@ require ["backbone", "models/slide"], (Backbone, Slide) ->
 	      when 35, 52 # end, $ key
 	        e.preventDefault()
 	        this.model.set('page': lastPage())
+	      when 191 # ? key
+	        e.preventDefault()
 
 	firstPage = () -> 0
 	lastPage = () -> $(PAGES).size()-1

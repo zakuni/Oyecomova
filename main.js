@@ -136,6 +136,8 @@
             return this.model.set({
               'page': lastPage()
             });
+          case 191:
+            return e.preventDefault();
         }
       }
     });
