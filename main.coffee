@@ -70,26 +70,25 @@ require ["backbone", "models/slide"], (Backbone, Slide) ->
 	      when 33, 37, 75 # pageup, left cursor, k key
 	        e.preventDefault()
 	        destination = this.model.get('page')-1
-	        if destination < firstPage()
-	          destination = if REPEAT then lastPage() else firstPage()
+	        if destination < this.firstPage()
+	          destination = if REPEAT then this.lastPage() else this.firstPage()
 	        this.model.set('page': destination)
 	      when 13, 32, 34, 39, 74 # space, enter, pagedown, right cursor, j key
 	        e.preventDefault()
 	        destination = this.model.get('page')+1
-	        if destination > lastPage()
-	          destination = if REPEAT then firstPage() else lastPage()
+	        if destination > this.lastPage()
+	          destination = if REPEAT then this.firstPage() else this.lastPage()
 	        this.model.set('page': destination)
 	      when 36, 48 # home, 0 key
 	        e.preventDefault()
-	        this.model.set('page': firstPage())
+	        this.model.set('page': this.firstPage())
 	      when 35, 52 # end, $ key
 	        e.preventDefault()
-	        this.model.set('page': lastPage())
+	        this.model.set('page': this.lastPage())
 	      when 191 # ? key
 	        e.preventDefault()
-
-	firstPage = () -> 0
-	lastPage = () -> $(PAGES).size()-1
+    firstPage: () -> 0
+    lastPage: () -> $(this.options.pages).size()-1
 
 	$ ->
 		slide = new Slide

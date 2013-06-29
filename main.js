@@ -21,7 +21,7 @@
   });
 
   require(["backbone", "models/slide"], function(Backbone, Slide) {
-    var EntireView, PAGES, PJAX, REPEAT, firstPage, lastPage;
+    var EntireView, PAGES, PJAX, REPEAT;
 
     PAGES = 'section';
     PJAX = false;
@@ -105,8 +105,8 @@
           case 75:
             e.preventDefault();
             destination = this.model.get('page') - 1;
-            if (destination < firstPage()) {
-              destination = REPEAT ? lastPage() : firstPage();
+            if (destination < this.firstPage()) {
+              destination = REPEAT ? this.lastPage() : this.firstPage();
             }
             return this.model.set({
               'page': destination
@@ -118,8 +118,8 @@
           case 74:
             e.preventDefault();
             destination = this.model.get('page') + 1;
-            if (destination > lastPage()) {
-              destination = REPEAT ? firstPage() : lastPage();
+            if (destination > this.lastPage()) {
+              destination = REPEAT ? this.firstPage() : this.lastPage();
             }
             return this.model.set({
               'page': destination
@@ -128,25 +128,25 @@
           case 48:
             e.preventDefault();
             return this.model.set({
-              'page': firstPage()
+              'page': this.firstPage()
             });
           case 35:
           case 52:
             e.preventDefault();
             return this.model.set({
-              'page': lastPage()
+              'page': this.lastPage()
             });
           case 191:
             return e.preventDefault();
         }
+      },
+      firstPage: function() {
+        return 0;
+      },
+      lastPage: function() {
+        return $(this.options.pages).size() - 1;
       }
     });
-    firstPage = function() {
-      return 0;
-    };
-    lastPage = function() {
-      return $(PAGES).size() - 1;
-    };
     return $(function() {
       var entireView, mediaQueryList, slide;
 
