@@ -33,7 +33,7 @@
       },
       initCSS: function() {
         this.$el.css('overflow', 'hidden');
-        $(PAGES).parent().css({
+        $(this.options.pages).parent().css({
           'display': 'flex',
           /* 
           	      jquery1.9.1 does not automatically add vendor prefix with 'flex'.
@@ -43,9 +43,9 @@
           'display': '-webkit-flex',
           'flex-wrap': 'nowrap',
           'align-items': 'center',
-          'min-width': "" + ($(PAGES).size() * 100) + "%"
+          'min-width': "" + ($(this.options.pages).size() * 100) + "%"
         });
-        return $(PAGES).css({
+        return $(this.options.pages).css({
           'display': 'flex',
           'display': '-webkit-flex',
           'justify-content': 'space-around',
@@ -88,7 +88,7 @@
         });
       },
       showPage: function() {
-        return $(PAGES).css('transform', "translateX(-" + (this.model.get('page') * 100) + "%)");
+        return $(this.options.pages).css('transform', "translateX(-" + (this.model.get('page') * 100) + "%)");
       },
       onKeyDown: function(e) {
         var destination;
@@ -152,7 +152,8 @@
 
       slide = new Slide;
       entireView = new EntireView({
-        model: slide
+        model: slide,
+        pages: PAGES
       });
       entireView.initCSS();
       entireView.listenTo(slide, 'change:page', entireView.showPage);

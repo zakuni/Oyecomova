@@ -11,7 +11,7 @@ require.config
 		"jquery": exports: "$"
 
 require ["backbone", "models/slide"], (Backbone, Slide) ->
-	PAGES = 'section'
+	PAGES = 'section'	
 	PJAX = false
 	REPEAT = true 
 
@@ -21,7 +21,7 @@ require ["backbone", "models/slide"], (Backbone, Slide) ->
 	    'keydown': 'onKeyDown'
 	  initCSS: ->
 	    this.$el.css('overflow', 'hidden')
-	    $(PAGES).parent().css
+	    $(this.options.pages).parent().css
 	      'display': 'flex'       
 	      ### 
 	      jquery1.9.1 does not automatically add vendor prefix with 'flex'.
@@ -30,8 +30,8 @@ require ["backbone", "models/slide"], (Backbone, Slide) ->
 	      'display': '-webkit-flex'
 	      'flex-wrap': 'nowrap'
 	      'align-items': 'center'
-	      'min-width': "#{$(PAGES).size() * 100}%"
-	    $(PAGES).css
+	      'min-width': "#{$(this.options.pages).size() * 100}%"
+	    $(this.options.pages).css
 	      'display': 'flex'
 	      'display': '-webkit-flex'
 	      'justify-content': 'space-around'
@@ -58,7 +58,7 @@ require ["backbone", "models/slide"], (Backbone, Slide) ->
 	      'transition': 'transform 1s ease' 
 	      'transition': '-webkit-transform 1s ease'
 	  showPage: ->
-	    $(PAGES).css('transform', "translateX(-#{this.model.get('page') * 100}%)")
+	    $(this.options.pages).css('transform', "translateX(-#{this.model.get('page') * 100}%)")
 	  onKeyDown: (e)->
 	    switch e.which
 	      when 38 # up cursor key
@@ -92,14 +92,16 @@ require ["backbone", "models/slide"], (Backbone, Slide) ->
 	lastPage = () -> $(PAGES).size()-1
 
 	$ ->
-	  slide = new Slide
-	  entireView = new EntireView(model: slide)
-	  entireView.initCSS()
+		slide = new Slide
+		entireView = new EntireView(
+	  	model: slide
+	  	pages: PAGES
+	  	)
+		entireView.initCSS()
+		entireView.listenTo(slide, 'change:page', entireView.showPage)
+		entireView.listenTo(slide, 'change:altitude', entireView.zoom)
 
-	  entireView.listenTo(slide, 'change:page', entireView.showPage)
-	  entireView.listenTo(slide, 'change:altitude', entireView.zoom)
-
-	  $(PAGES).click (e) ->
+		$(PAGES).click (e) ->
 	    e.preventDefault()
 	    clickedPage = $(PAGES).index($(this))
 	    slide.set('page': clickedPage)
