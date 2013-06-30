@@ -11,8 +11,6 @@ require.config
     "jquery": exports: "$"
 
 require ["backbone", "models/slide"], (Backbone, Slide) ->
-  PJAX = false
-  REPEAT = true 
 
   EntireView = Backbone.View.extend
     el: 'html'
@@ -70,13 +68,13 @@ require ["backbone", "models/slide"], (Backbone, Slide) ->
           e.preventDefault()
           destination = this.model.get('page')-1
           if destination < this.firstPage()
-            destination = if REPEAT then this.lastPage() else this.firstPage()
+            destination = if this.options.repeat then this.lastPage() else this.firstPage()
           this.model.set('page': destination)
         when 13, 32, 34, 39, 74 # space, enter, pagedown, right cursor, j key
           e.preventDefault()
           destination = this.model.get('page')+1
           if destination > this.lastPage()
-            destination = if REPEAT then this.firstPage() else this.lastPage()
+            destination = if this.options.repeat then this.firstPage() else this.lastPage()
           this.model.set('page': destination)
         when 36, 48 # home, 0 key
           e.preventDefault()
@@ -90,11 +88,15 @@ require ["backbone", "models/slide"], (Backbone, Slide) ->
     lastPage: () -> $(this.options.pages).size()-1
 
   $ ->
-    PAGES = 'section'      
+    PAGES = 'section'
+    REPEAT = true
+    PJAX = false
+
     slide = new Slide
     entireView = new EntireView(
       model: slide
       pages: PAGES
+      repeat: REPEAT
       )
     entireView.initCSS()
     entireView.listenTo(slide, 'change:page', entireView.showPage)
