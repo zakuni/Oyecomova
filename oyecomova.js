@@ -59,7 +59,7 @@
       $(this.options.pages).parent().css({
         'display': 'flex',
         /* 
-        jquery1.9.1 does not automatically add vendor prefix with 'flex'.
+        jquery1.10.1 does not automatically add vendor prefix with 'flex'.
         and also, only Chrome supports 'flex' for now.
         */
 
