@@ -1,8 +1,7 @@
 EntireView = Backbone.View.extend
   el: 'html'
   events:
-    'keydown': 'onKeyDown',
-    'keydown 38': 'up'
+    'keydown': 'onKeyDown'
   initCSS: ->
     this.$el.css('overflow', 'hidden')
     $(this.options.pages).parent().css

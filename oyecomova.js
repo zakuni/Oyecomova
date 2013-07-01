@@ -52,8 +52,7 @@
   EntireView = Backbone.View.extend({
     el: 'html',
     events: {
-      'keydown': 'onKeyDown',
-      'keydown 38': 'up'
+      'keydown': 'onKeyDown'
     },
     initCSS: function() {
       this.$el.css('overflow', 'hidden');
