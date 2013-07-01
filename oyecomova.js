@@ -163,9 +163,6 @@
           return e.preventDefault();
       }
     },
-    up: function() {
-      return console.log("up");
-    },
     firstPage: function() {
       return 0;
     },

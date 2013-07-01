@@ -70,7 +70,5 @@ EntireView = Backbone.View.extend
         this.model.set('page': this.lastPage())
       when 191 # ? key
         e.preventDefault()
-  up: () ->
-    console.log("up")
   firstPage: () -> 0
   lastPage: () -> $(this.options.pages).size()-1
