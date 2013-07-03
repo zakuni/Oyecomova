@@ -1,7 +1,16 @@
+Router = Backbone.Router.extend
+  routes: 
+    ":number": "movePage"
+
+  movePage: () ->
+
 $ ->
   PAGES = 'section'
   REPEAT = true
   PJAX = false
+
+  new Router()
+  Backbone.history.start()
 
   slide = new Slide
   entireView = new EntireView(
