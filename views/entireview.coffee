@@ -1,4 +1,4 @@
-EntireView = Backbone.View.extend
+class EntireView extends Backbone.View
   el: 'html'
   events:
     'keydown': 'onKeyDown'
